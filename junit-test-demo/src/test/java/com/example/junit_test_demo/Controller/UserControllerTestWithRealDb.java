@@ -73,8 +73,8 @@ public class UserControllerTestWithRealDb {
 
     @Test
     void shouldDeleteUser() {
-        User savedUser = userRepository.save(new User("John", "Doe", "john@example.com", "STAT"));
-
+        User savedUser = userService.saveUser(new User("John", "Doe", "john@example.com", "STAT"));
+        User newlyAddedUser = userService.getUserByEmail(savedUser.getUserEmail());
         webTestClient.delete().uri("/api/users/" + savedUser.getUserId())
                 .exchange()
                 .expectStatus().isOk()
