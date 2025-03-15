@@ -39,12 +39,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String userId) {
+    public String deleteUser(String userId) {
         if (userId != null || userId != ""){
             userRepo.deleteById(userId);
-            System.out.println("User with id "+userId+" deleted successfully.");
+            return "User with id "+userId+" deleted successfully.";
         }else{
-            System.out.println("Cannot find the user.");
+            return "Cannot find the user.";
         }
     }
     @Override

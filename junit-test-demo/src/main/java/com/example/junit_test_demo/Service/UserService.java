@@ -9,6 +9,6 @@ public interface UserService {
     public Optional<User> getUserById(String userId);
     public User getUserByEmail(String userEmail);
     public List getUsersByDepartment(String department);
-    public void deleteUser(String userId);
+    public String deleteUser(String userId);
     public User updateUser(User userData, String userId);
 }

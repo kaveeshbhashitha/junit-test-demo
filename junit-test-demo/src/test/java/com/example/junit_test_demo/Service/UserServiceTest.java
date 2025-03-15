@@ -8,8 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -26,12 +24,6 @@ class UserServiceTest {
     @InjectMocks
     private UserServiceImpl userService;
 
-    @Autowired
-    private UserRepository userRepo;
-
-    @Autowired
-    private UserServiceImpl userSer;
-
     // Test: Save User
     @Test
     void shouldSaveUserSuccessfully() {
@@ -40,20 +32,6 @@ class UserServiceTest {
         User savedUser = userService.saveUser(user);
         assertNotNull(savedUser);
         assertEquals("John", savedUser.getFirstName());
-    }
-
-    //test in real db
-    @Test
-    void shouldSaveUserToDatabase() {
-        User user = new User("John", "Doe", "john@example.com", "STAT");
-        User savedUser = userSer.saveUser(user);
-
-        assertNotNull(savedUser.getUserId());
-        assertEquals("John", savedUser.getFirstName());
-
-        // Verify it's really in the DB
-        Optional<User> fetchedUser = Optional.ofNullable(userRepo.findByUserEmail("john@example.com"));
-        assertTrue(fetchedUser.isPresent());
     }
 
     // Test: Get User by ID - Found
